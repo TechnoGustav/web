@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  background-color: black;
+  font-family: 'Press Start 2P', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  width: 800px;
+  height: 400px;
+}
+
+.circle {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background-color: red;
+  background-image: url('circle.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.circle:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateX(0);
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1;
+}
+
+.btn {
+  background-color: #00bfff;
+  color: white;
+  padding: 20px 140px;
+  border-radius: 17px;
+  font-size: 16px;
+  text-align: center;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 1;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn:hover {
+  background-color: #009bd1;
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+.container.active .circle {
+  transform: translate(-280px, -50%);
+}
+
+.container.active .menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) translateX(150px);
+}
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    #bg-video,
+    .overlay {
+      display: none;
+    }
+  
+    body {
+      background-image: url('mobile-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  
+    .container {
+      width: 100vw;
+      height: 100vh;
+    }
+  
+    .circle {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.5s ease;
+    }
+  
+    .container.active .circle {
+      transform: translate(-50%, -65%);
+    }
+  
+    .menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateY(30px);
+      opacity: 0;
+      pointer-events: none;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      z-index: 3;
+    }
+  
+    .container.active .menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%) translateY(80px);
+    }
+  
+    .btn {
+      padding: 15px 80px;
+      font-size: 14px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+  }
+  

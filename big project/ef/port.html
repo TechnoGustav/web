@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="port.css" />
+</head>
+<body>
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="bg.mp4" type="video/mp4" />
+  </video>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <div class="circle" id="circle"></div>
+    <div class="menu" id="menu">
+      <a href="videos.html" class="btn">Videos</a>
+      <a href="renders.html" class="btn">Renders</a>
+      <a href="programs.html" class="btn">Programs</a>
+      <a href="upcoming.html" class="btn">Upcoming</a>
+    </div>
+  </div>
+  <audio id="hover-sound" src="hover.mp3" preload="auto"></audio>
+
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+  <img src="unmute.png" id="mute-btn" alt="Mute Toggle" style="position: fixed; top: 20px; right: 20px; width: 40px; cursor: pointer; z-index: 10;" />
+
+  <script>
+    const circle = document.getElementById('circle');
+    const container = document.querySelector('.container');
+    const clickSound = document.getElementById('click-sound');
+    const hoverSound = document.getElementById('hover-sound');
+    const muteBtn = document.getElementById('mute-btn');
+    let isMuted = false;
+  
+    // Toggle menu and play click sound
+    circle.addEventListener('click', () => {
+      container.classList.toggle('active');
+      if (!isMuted) {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      }
+    });
+  
+    // Click sound on button clicks
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!isMuted) {
+          clickSound.currentTime = 0;
+          clickSound.play();
+        }
+      });
+    });
+  
+    // Hover sound (only play if not already playing)
+    function playHoverSound() {
+  if (isMuted) return;
+
+  const sound = new Audio('hover.mp3');
+  sound.volume = 1;
+  sound.play();
+}
+
+    
+  
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mouseenter', playHoverSound);
+    });
+  
+    circle.addEventListener('mouseenter', playHoverSound);
+  
+    // Mute toggle
+    muteBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      muteBtn.src = isMuted ? 'mute.png' : 'unmute.png';
+    });
+  </script>
+  
+</body>
+</html>

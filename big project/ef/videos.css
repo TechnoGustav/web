@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  overflow-y: auto;
+  background-color: #2d2d2d;
+  font-family: 'Press Start 2P', monospace;
+  color: white;
+}
+
+.back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background-color: #00bfff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 2px solid black;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+  transition: background 0.3s;
+}
+
+.back:hover {
+  background-color: #009bd1;
+}
+
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 100px 20px 120px 40px; /* ⬅︎ increased left padding */
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+
+.entry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: nowrap;
+}
+
+.entry-text {
+  width: 320px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.entry-media {
+  width: 320px;
+  height: 180px;
+  background-color: black;
+  border: 3px solid #00bfff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.4);
+  position: relative;
+}
+
+.entry-media img,
+.entry-media iframe,
+.entry-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: none;
+  border-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .entry {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .entry-text {
+    width: 100%;
+    height: auto;
+  }
+
+  .entry-media {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
